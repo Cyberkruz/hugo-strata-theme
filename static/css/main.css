@@ -3155,3 +3155,8 @@
 	 font-size: 20px;
 	 line-height: 36px;
  }
+
+.single-content {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}

@@ -3,6 +3,10 @@
 		{{ partial "about" . }}
 	{{ end }}
 
+	{{ if not .Site.Params.categories.hide }}
+		{{ partial "categories" . }}
+	{{ end }}
+
 	{{ if not .Site.Params.portfolio.hide }}
 		{{ partial "portfolio" . }}
 	{{ end }}

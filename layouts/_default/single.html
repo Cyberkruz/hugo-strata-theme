@@ -5,9 +5,9 @@
 		{{ partial "post-meta" . }}
 	</span>
 
-	<p>
-	    {{ .Content }}
-	</p>
+	<div class="single-content">
+		{{ .Content }}
+	</div>
 
 	{{ template "_internal/disqus.html" . }}
 {{ end }}
