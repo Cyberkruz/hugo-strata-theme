@@ -10,6 +10,8 @@
 		<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{{ with .Site.Params.favicon }}<link rel="shortcut icon" href="{{ $.Site.BaseURL }}{{ . }}">{{ end }}
+		{{ with .Site.Params.apple_touch_icon }}<link rel="apple-touch-icon image_src" href="{{ $.Site.BaseURL }}{{ . }}">{{ end }}
 		{{ with .Site.Params.name }}<meta name="author" content="{{ . }}">{{ end }}
 		{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 		{{ with .Site.LanguageCode }}<meta http-equiv="content-language" content="{{ . }}" />{{ end }}
@@ -20,6 +22,8 @@
 		<meta name="og:url" content="{{ .Permalink }}">
 		<meta name="og:image" content="{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}">
 		{{ end }}
+
+		<link rel="canonical" href="{{ .Permalink }}" />
 
 		{{ .Hugo.Generator }}
 
