@@ -13,30 +13,30 @@
 		{{ with .Site.Params.favicon }}<link rel="shortcut icon" href="{{ $.Site.BaseURL }}{{ . }}">{{ end }}
 		{{ with .Site.Params.apple_touch_icon }}<link rel="apple-touch-icon image_src" href="{{ $.Site.BaseURL }}{{ . }}">{{ end }}
 		{{ with .Site.Params.name }}<meta name="author" content="{{ . }}">{{ end }}
-		{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+		{{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
 		{{ with .Site.LanguageCode }}<meta http-equiv="content-language" content="{{ . }}" />{{ end }}
-
 		{{ if not .Site.Params.OpenGraph.hide }}
+		{{ .Hugo.Generator }}
 		<meta name="og:site_name" content="{{ .Site.Title }}">
 		<meta name="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
 		<meta name="og:url" content="{{ .Permalink }}">
 		<meta name="og:image" content="{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}">
+		<meta name="og:description" content="{{ .Site.Params.description }}">
+		{{ end }}	
+		{{ if not .Site.Params.TwitterCard.hide }}
+		<meta name="twitter:title" property="og:title" itemprop="title name" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+		<meta name="twitter:description" property="og:description" itemprop="description" content="{{ .Site.Params.description }}" />
 		{{ end }}
-
-		<link rel="canonical" href="{{ .Permalink }}" />
-
-		{{ .Hugo.Generator }}
-
 		{{ "<!--[if lte IE 8]>" | safeHTML }}<script src='{{ .Site.BaseURL }}js/ie/html5shiv.js'></script>{{ "<![endif]-->" | safeHTML}}
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/main.css" />
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
 		{{ "<!--[if lte IE 8]>" | safeHTML }}<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/ie8.css">{{ "<![endif]-->" | safeHTML}}
-
 		{{ with .RSSLink }}
 		<link href="{{ . }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
 		<link href="{{ . }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
 		{{ end }}
+		<link rel="canonical" href="{{ .Permalink }}" />
 		{{ range .Site.Params.custom_css }}
 		<link rel="stylesheet" href="{{ $.Site.BaseURL }}{{ . }}">
 		{{ end }}
